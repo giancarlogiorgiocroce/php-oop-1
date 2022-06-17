@@ -13,23 +13,23 @@ La classe può essere definita internamente al file index.php o essere inclusa (
 
 class Movie {
     public $name;
-    public $length;
-
-    public function __constructor(
-                                $_name, 
-                                $_length){
-        $this->name = $_name;
-        $this->length = $_length;
+    public $lenght;
+  
+    function __construct($name, $length) {
+      $this->name = $name;
+      $this->length = $length;
     }
 }
+  
+$movies = [];
 
-$bladeRunner = new Movie();
-$bladeRunner->name = "Blade Runner";
-$bladeRunner->length = "1h 57m";
+$bladeRunner = new Movie('Blade Runner', '1h 57m');
+$movies[] = $bladeRunner;
 
-$madMax = new Movie();
-$madMax->name = "Mad Max Fury Road";
-$madMax->length = "2h 00m";
+$madMax = new Movie("Mad Max Fury Road", "2h 00m");
+$movies[] = $madMax;
+
+var_dump($movies);
 ?>
 
 <!DOCTYPE html>
@@ -43,18 +43,13 @@ $madMax->length = "2h 00m";
 <body>
     <h1>Lista film</h1>
     <div class="film">
-        <h4> Nome Film: </h4>
-        <h3> <?php echo $bladeRunner->name ?> </h3>
-        <h4> Durata: </h4>
-        <h3> <?php echo $bladeRunner->length ?> </h3>
-        <br>
-    </div>
-    <div class="film">
-        <h4> Nome Film: </h4>
-        <h3> <?php echo $madMax->name ?> </h3>
-        <h4> Durata: </h4>
-        <h3> <?php echo $madMax->length ?> </h3>
-        <br>
+        <?php foreach ($movies as $k => $v):?>
+            <h4> Nome Film: </h4>
+            <h3> <?php echo $v->name ?> </h3>
+            <h4> Durata: </h4>
+            <h3> <?php echo $v->length ?> </h3>
+            <br>
+        <?php endforeach;?>
     </div>
     
 </body>

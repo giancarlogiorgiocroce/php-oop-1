@@ -26,3 +26,13 @@ class Movie {
         return $this->length;
     }
 }
+
+<div class="film">
+<?php foreach ($movies as $k => $v):?>
+    <h4> Nome Film: </h4>
+    <h3> <?php echo $v->name ?> </h3>
+    <h4> Durata: </h4>
+    <h3> <?php echo $v->length ?> </h3>
+    <br>
+<?php endforeach;?>
+</div>
