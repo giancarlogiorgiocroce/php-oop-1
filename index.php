@@ -13,23 +13,34 @@ La classe può essere definita internamente al file index.php o essere inclusa (
 
 class Movie {
     public $name;
-    public $lenght;
+    public $length;
+    private $box_office;
   
-    function __construct($name, $length) {
+    public function __construct($name, $length) {
       $this->name = $name;
       $this->length = $length;
+    }
+
+    public function setBoxOffice($_box_office){
+        $this->box_office = $_box_office;
+    }
+
+    public function getBoxOffice(){
+        return $this->box_office;
     }
 }
   
 $movies = [];
 
 $bladeRunner = new Movie('Blade Runner', '1h 57m');
+$bladeRunner->setBoxOffice("28 milioni $");
 $movies[] = $bladeRunner;
 
 $madMax = new Movie("Mad Max Fury Road", "2h 00m");
+$madMax->setBoxOffice("50 milioni $");
 $movies[] = $madMax;
 
-var_dump($movies);
+// var_dump($movies);
 ?>
 
 <!DOCTYPE html>
@@ -44,10 +55,12 @@ var_dump($movies);
     <h1>Lista film</h1>
     <div class="film">
         <?php foreach ($movies as $k => $v):?>
-            <h4> Nome Film: </h4>
+            <h6> Nome Film: </h6>
             <h3> <?php echo $v->name ?> </h3>
-            <h4> Durata: </h4>
+            <h6> Durata: </h6>
             <h3> <?php echo $v->length ?> </h3>
+            <h6> Incassi: </h6>
+            <h3> <?php echo $v->getBoxOffice() ?> </h3>
             <br>
         <?php endforeach;?>
     </div>
